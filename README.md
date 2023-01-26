@@ -68,8 +68,8 @@ func main() {
     fmt.Println(styledStr1)
 
     // Usage 2: Mark the start and end of the color while printing.
-    fmt.Printf("%sHello%s World", color2.Start(true), color2.End(true))
-    fmt.Printf("%sHello%s %sWorld%s", color2.Start(true), color2.End(true), color3.Start(true), color3.End(true))
+    fmt.Printf("%sHello%s World\n", color2.Start(true), color2.End(true))
+    fmt.Printf("%sHello%s %sWorld%s\n", color2.Start(true), color2.End(true), color3.Start(true), color3.End(true))
 
     // Usage 3: Define a style and apply it to a string.
     style1 := gcstyle.Style{
@@ -77,7 +77,7 @@ func main() {
      Background:    nil,
      Bold:          true,
      Italic:        false,
-     Underline:     false,
+     Underline:     true,
      Strikethrough: false,
      Darken:        false,
      Lighten:       false,
@@ -86,7 +86,7 @@ func main() {
     fmt.Println(styledStr2)
 
     // Usage 4: Mark the start and end of the style while printing.
-    fmt.Printf("%sHello%s World", style1.Start(true), style1.End(true))
+    fmt.Printf("%sHello%s World\n", style1.Start(true), style1.End(true))
 }
 ```
 
