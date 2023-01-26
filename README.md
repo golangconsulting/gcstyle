@@ -46,7 +46,7 @@ GCStyle provides the following three methods to create colors.
    clr2 := wcolor.HEX("#fff")    // 3 digit hex value with # prefix.
    ```
 
-## Qick Start
+## Quick Start
 
 ```go
 package main
