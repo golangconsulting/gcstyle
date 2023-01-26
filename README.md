@@ -73,14 +73,14 @@ func main() {
 
     // Usage 3: Define a style and apply it to a string.
     style1 := gcstyle.Style{
-     Color:         wcolor.Lime.Clone(),
-     Background:    nil,
-     Bold:          true,
-     Italic:        false,
-     Underline:     true,
-     Strikethrough: false,
-     Darken:        false,
-     Lighten:       false,
+        Color:         wcolor.Lime.Clone(),
+        Background:    nil,
+        Bold:          true,
+        Italic:        false,
+        Underline:     true,
+        Strikethrough: false,
+        Darken:        false,
+        Lighten:       false,
     }
     styledStr2 := style1.ApplyTo("Hello", true).String()
     fmt.Println(styledStr2)
