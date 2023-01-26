@@ -49,9 +49,13 @@ GCStyle provides the following three methods to create colors.
 ## Qick Start
 
 ```go
+package main
+
 import (
-    "github.com/arafath-mk/gcstyle"
-    "github.com/arafath-mk/gcstyle/wcolor"
+ "fmt"
+
+ "github.com/arafath-mk/gcstyle"
+ "github.com/arafath-mk/gcstyle/wcolor"
 )
 
 func main() {
@@ -64,24 +68,25 @@ func main() {
     fmt.Println(styledStr1)
 
     // Usage 2: Mark the start and end of the color while printing.
-    fmt.Println("%sHello%s World", color2.Start(true), color2.End(true))
+    fmt.Printf("%sHello%s World", color2.Start(true), color2.End(true))
+    fmt.Printf("%sHello%s %sWorld%s", color2.Start(true), color2.End(true), color3.Start(true), color3.End(true))
 
     // Usage 3: Define a style and apply it to a string.
     style1 := gcstyle.Style{
-        Color:          wcolor.Lime.Clone()
-        Background:     nil
-        Bold:           true
-        Italic:         false
-        Underline:      false
-        Strikethrough:  false
-        Darken:         false
-        Lighten:        false
+     Color:         wcolor.Lime.Clone(),
+     Background:    nil,
+     Bold:          true,
+     Italic:        false,
+     Underline:     false,
+     Strikethrough: false,
+     Darken:        false,
+     Lighten:       false,
     }
     styledStr2 := style1.ApplyTo("Hello", true).String()
     fmt.Println(styledStr2)
 
     // Usage 4: Mark the start and end of the style while printing.
-    fmt.Println("%sHello%s World", style1.Start(true), style1.End(true))
+    fmt.Printf("%sHello%s World", style1.Start(true), style1.End(true))
 }
 ```
 
