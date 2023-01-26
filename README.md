@@ -52,10 +52,10 @@ GCStyle provides the following three methods to create colors.
 package main
 
 import (
- "fmt"
+    "fmt"
 
- "github.com/arafath-mk/gcstyle"
- "github.com/arafath-mk/gcstyle/wcolor"
+    "github.com/arafath-mk/gcstyle"
+    "github.com/arafath-mk/gcstyle/wcolor"
 )
 
 func main() {
@@ -93,7 +93,11 @@ func main() {
 ### Usage 1: Apply styles to string
 
 ```go
+package main
+
 import (
+    "fmt"
+
     "github.com/arafath-mk/gcstyle"
     "github.com/arafath-mk/gcstyle/wcolor"
 )
@@ -104,11 +108,11 @@ func main() {
     fmt.Println(styledStr1)
 
     // You can apply other styles too. Like, Bold, Underline, etc.
-    styledStr2 := gcstyle.ApplyTo("Hello World", true).Color(wcolor.Blue).Bold().Underline().String()
+    styledStr2 := gcstyle.ApplyTo("Hello World", true).Color(wcolor.Dodgerblue).Bold().Underline().String()
     fmt.Println(styledStr2)
 
     // You can concatinate un-styled string with styled string.
-    styledStr3 := gcstyle.ApplyTo("Hello", true).Color(wcolor.Blue).String()
+    styledStr3 := gcstyle.ApplyTo("Hello", true).Color(wcolor.Dodgerblue).String()
     styledStr3 += " World"
     // Below print statement outputs 'Hello' using Blue color. And the ' World' will be printed using the terminal's default color.
     fmt.Println(styledStr3)
@@ -118,8 +122,11 @@ func main() {
 ### Usage 2: Mark the start and end of the color while printing
 
 ```go
+package main
+
 import (
-    "github.com/arafath-mk/gcstyle"
+    "fmt"
+
     "github.com/arafath-mk/gcstyle/wcolor"
 )
 
@@ -127,17 +134,22 @@ func main() {
     color := wcolor.Cyan
 
     // You can mark start and end of the color while printing. Hello will be printed in Cyan.
-    fmt.Println("%sHello%s World", color.Start(true), color.End(true))
+    fmt.Printf("%sHello%s World\n", color.Start(true), color.End(true))
 
     // You can mark start and end of the color while printing. World will be printed in Red.
-    fmt.Println("Hello %sWorld%s", wcolor.Red.Start(true), wcolor.Red.End(true))
+    fmt.Printf("Hello %sWorld%s\n", wcolor.Red.Start(true), wcolor.Red.End(true))
 }
+
 ```
 
 ### Usage 3: Define style and apply it to string
 
 ```go
+package main
+
 import (
+    "fmt"
+
     "github.com/arafath-mk/gcstyle"
     "github.com/arafath-mk/gcstyle/wcolor"
 )
@@ -145,14 +157,14 @@ import (
 func main() {
     // Define a style and apply it to a string.
     style := gcstyle.Style{
-        Color:          wcolor.Lime.Clone()
-        Background:     nil
-        Bold:           true
-        Italic:         false
-        Underline:      false
-        Strikethrough:  false
-        Darken:         false
-        Lighten:        false
+        Color:         wcolor.Lightblue.Clone(),
+        Background:    nil,
+        Bold:          true,
+        Italic:        false,
+        Underline:     true,
+        Strikethrough: false,
+        Darken:        false,
+        Lighten:       false,
     }
     styledStr := style.ApplyTo("Hello", true).String()
     fmt.Println(styledStr)
@@ -168,7 +180,11 @@ func main() {
 ### Usage 4: Mark the start and end of the style while printing
 
 ```go
+package main
+
 import (
+    "fmt"
+
     "github.com/arafath-mk/gcstyle"
     "github.com/arafath-mk/gcstyle/wcolor"
 )
@@ -176,13 +192,14 @@ import (
 func main() {
     // Define a style.
     style := gcstyle.Style{
-        Color:          wcolor.Red.Clone()
-        Bold:           true
+        Color: wcolor.Red.Clone(),
+        Bold:  true,
     }
 
     // Mark the start and end of the style while printing. 'Hello' will be printed in Red color and bold style.
-    fmt.Println("%sHello%s World", style.Start(true), style.End(true))
+    fmt.Printf("%sHello%s World\n", style.Start(true), style.End(true))
 }
+
 ```
 
 ### Conditionally Apply Styles
@@ -190,7 +207,11 @@ func main() {
 You can use a flag variable to conditionally apply the styles. If the value of the flag is `false`, then GCStyle will not style the output.
 
 ```go
+package main
+
 import (
+    "fmt"
+
     "github.com/arafath-mk/gcstyle"
     "github.com/arafath-mk/gcstyle/wcolor"
 )
@@ -198,7 +219,6 @@ import (
 func main() {
     color1 := wcolor.Cyan
     color2 := wcolor.RGB(200, 25, 200)
-    color3 := wcolor.HEX("#f210fe")
 
     canStyle := false
 
@@ -207,25 +227,26 @@ func main() {
     fmt.Println(styledStr1)
 
     // Usage 2: Mark start and end color while printing.
-    fmt.Println("%sHello%s World", color2.Start(canStyle), color2.End(canStyle))
+    fmt.Printf("%sHello%s World\n", color2.Start(canStyle), color2.End(canStyle))
 
     // Usage 3: Define a style and apply it to a string.
     style1 := gcstyle.Style{
-        Color:          wcolor.Lime.Clone()
-        Background:     nil
-        Bold:           true
-        Italic:         false
-        Underline:      false
-        Strikethrough:  false
-        Darken:         false
-        Lighten:        false
+       Color:         wcolor.Lime.Clone(),
+       Background:    nil,
+       Bold:          true,
+       Italic:        false,
+       Underline:     false,
+       Strikethrough: false,
+       Darken:        false,
+       Lighten:       false,
     }
     styledStr2 := style1.ApplyTo("Hello", canStyle).String()
     fmt.Println(styledStr2)
 
     // Usage 4: Mark start and end style while printing.
-    fmt.Println("%sHello%s World", style1.Start(canStyle), style1.End(canStyle))
+    fmt.Printf("%sHello%s World\n", style1.Start(canStyle), style1.End(canStyle))
 }
+
 ```
 
 ### Check whether the terminal supports styling
@@ -233,20 +254,23 @@ func main() {
 You can use the `gcstyle.CanApplyStyle()` function to check whether the terminal supports styling.
 
 ```go
+package main
+
 import (
+    "fmt"
+    "os"
+
     "github.com/arafath-mk/gcstyle"
     "github.com/arafath-mk/gcstyle/wcolor"
 )
 
 func main() {
     color1 := wcolor.Cyan
-    color2 := wcolor.RGB(200, 25, 200)
-    color3 := wcolor.HEX("#f210fe")
 
-    canStyle := gcstyle.CanApplyStyle()
+    canStyle := gcstyle.CanApplyStyle(os.Stdout)
 
     // Apply style to a string and then print it.
-    styledStr1 := gcstyle.ApplyTo("Hello", canStyle).Color(color1).Bold().String()
+    styledStr1 := gcstyle.ApplyTo("Hello", canStyle).Color(color1).Italic().String()
     fmt.Println(styledStr1)
 }
 ```
